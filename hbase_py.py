@@ -27,25 +27,47 @@ def connect_to_hbase():
     return connection, table, batch
 
 def insert_row(batch, row):
-    batch.put(str(row), {"data:value": str(row+1)})
+    batch.put(str(row), {"data:value": str(row+10)})
+    print "Insert row %i" % (row)
 
+def delete_row(batch, row):
+    batch.delete(str(row))
+    print "Delete row %i" % (row)
 
-connection, table, batch = connect_to_hbase()
-print "Connect to HBase. Table name: %s, batch size: %i" % (table_name, batch_size)
-print(connection.tables())
+# Start to run
+# connection, table, batch = connect_to_hbase()
+pool = happybase.ConnectionPool(size=3, host=host, table_prefix=namespace, table_prefix_separator=':', port=9090)
+with pool.connection() as connection:
+    # print "Connect to HBase. batch size: %i" % (batch_size)
+    print(connection.tables())
+    table = connection.table(name=table_name)
+    batch = table.batch(batch_size=batch_size)
 
-for row in range(1, 100):
-    insert_row(batch, row)
+    for row in range(1, 10000):
+        insert_row(batch, row)
 
-batch.send()
+    batch.send()
+
+#    with batch:
+#        insert_row(batch, row)
+
+#    delete_row(batch, row)
+#    insert_row(batch, row)
+
+# batch.send()
 
 # read
 # one_row = table.row(row='2')
 # print(one_row['data:value'])
-for key, data in table.scan():
-    print(key, data)
+# for key, data in table.scan():
+#    if key != '':
+#        print(key, data)
+        # print "Remove row %i" % int(key)
+        # batch.delete(row=str(key))
+
+
+# batch.send()
 
 connection.close()
-
 duration = time.time() - start_time
 print "Done. duration: %.3f s" % (duration)
