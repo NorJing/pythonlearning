@@ -1,0 +1,16 @@
+    1: def eggs_generator():
+    1:     yield 'eggs'
+           yield 'EGGS!'
+       
+    1: def spam_generator():
+    1:     yield 'spam'
+    1:     yield 'spam!'
+    1:     yield 'SPAM!'
+       
+    1: generator = spam_generator()
+    1: print(next(generator))
+    1: print(next(generator))
+    1: print(next(generator))
+       
+    1: generator = eggs_generator()
+    1: print(next(generator))
