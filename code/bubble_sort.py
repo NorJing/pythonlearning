@@ -33,6 +33,6 @@ def insert_sort(list):
     return list
 
 if __name__ == '__main__':
-    list = [1,31,5,44,2,78,120,4,1,0]
+    list = [1, 31, 5, 44, 2, 78, 120, 4, 1, 0]
     print(insert_sort(list))
 #    print(bubble_sort(list))
