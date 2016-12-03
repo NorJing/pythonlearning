@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+# 二分查找
 def binary_search(list, item):
     first = 0
     last = len(list) - 1
