@@ -33,6 +33,7 @@ def qsort(arr):
                [pivot] + \
                qsort([x for x in arr[1:] if x >= pivot])
 
+# 快速排序
 def quick_sort(list):
     less = []
     more = []
