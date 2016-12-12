@@ -7,8 +7,8 @@ class Stack:
         self.data.append(value)
 
     def pop(self):
-        last = len(self.data) - 1
-        self.data.pop(last)
+        # last = len(self.data) - 1
+        self.data.pop()
 
     def pop1(self):
         last = len(self.data) - 1
