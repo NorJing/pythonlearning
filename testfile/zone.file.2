@@ -1,0 +1,15 @@
+$TTL 3D
+@       IN      SOA     test.com. root.test.com. (
+                        199609208       ; serial, todays date + todays serial #
+                        8H              ; refresh, seconds
+                        2H              ; retry, seconds
+                        4W              ; expire, seconds
+                        1D )            ; minimum, seconds
+                NS      test.com.
+                NS      ns.net.
+                MX      10 test.com.  ; Primary Mail Exchanger
+                TXT     "Test Corp"
+
+localhost       A       127.0.0.1
+test.com.	A       127.0.0.2
+ns              A       127.0.0.3
